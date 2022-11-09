@@ -6,7 +6,7 @@ const NavBar = () => {
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.callButton}>
-          <Image src='/img/logo3.png' width="100" height="110"/>
+          <Image src='/img/logo3.png' width="100" height="100"/>
         </div>
         <div className={styles.texts}>
           <div className={styles.text}>ORDER NOW!</div>
