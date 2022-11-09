@@ -9,15 +9,16 @@ const Featured = () => {
     "/img/pizza2.jpg",
     "/img/pizza3.jpg",
     "/img/pizza4.jpg",
-    "/img/pizza5.jpg",
+    "/img/pizza5.jpg"
   ];
 
+  // handleArrow condition
   const handleArrow = (direction) =>{
       if(direction==="l"){
-          setIndex(index !== 0 ? index-1 : 2)
+          setIndex(index !== 0 ? index-1 : 4)
       }
       if(direction==="r"){
-          setIndex(index !== 2 ? index+1 : 0)
+          setIndex(index !== 4 ? index+1 : 0)
       }
   }
 
