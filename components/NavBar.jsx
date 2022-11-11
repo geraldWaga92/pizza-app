@@ -6,11 +6,11 @@ const NavBar = () => {
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.callButton}>
-          <Image src='/img/logo3.png' width="100" height="100"/>
+          <Image src='/img/logo5.png' width="150" height="120"/>
         </div>
         <div className={styles.texts}>
           <div className={styles.text}>ORDER NOW!</div>
-          <div className={styles.text}>012 345 678 </div>
+          <div className={styles.text}>+12 345 678 </div>
         </div>
       </div>
       <div className={styles.item}>
@@ -30,7 +30,6 @@ const NavBar = () => {
           <div className={styles.counter}>2</div>
         </div>
       </div>
-      
     </div>
   )
 }

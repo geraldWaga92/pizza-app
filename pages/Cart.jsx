@@ -23,7 +23,7 @@ const Cart = () => {
                             <Image
                             src="/img/pizza.png"
                             layout="fill"
-                            objectFit="cover"
+                            objectfit="cover"
                             alt=""
                             />
                         </div>
@@ -52,7 +52,7 @@ const Cart = () => {
                             <Image
                             src="/img/pizza.png"
                             layout="fill"
-                            objectFit="cover"
+                            objectfit="cover"
                             alt=""
                             />
                         </div>
