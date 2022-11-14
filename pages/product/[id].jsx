@@ -87,14 +87,14 @@ const Product = () => {
   );
 };
 
-export const getServerSideProps = async ({params}) => {
+// export const getServerSideProps = async ({params}) => {
   
-  const res = await axios.get(`http://localhost:3000/api/products/${params}`);
-  return {
-    props: {
-      pizza: res.data,
-    },
-  };
-};
+//   const res = await axios.get(`http://localhost:3000/api/products/${params}`);
+//   return {
+//     props: {
+//       pizza: res.data,
+//     },
+//   };
+// };
 
 export default Product;
