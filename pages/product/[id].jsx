@@ -1,17 +1,20 @@
 import styles from "../../styles/Product.module.css";
 import Image from "next/image";
 import { useState } from "react";
+import axios from "axios";
 
 //this component page is for when we click the pizza we'll be directed into another page
-const Product = () => {
+const Product = ({ pizza }) => {
   const [size, setSize] = useState(0);
-  const pizza = {
-    id: 1,
-    img: "/img/pizza.png",
-    name: "CAMPAGNOLA",
-    price: [19.9, 23.9, 27.9],
-    desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
-  };
+
+  //-- this dummy data is not needed anymore because we already have data on our
+  // const pizza = {
+  //   id: 1,
+  //   img: "/img/pizza.png",
+  //   name: "CAMPAGNOLA",
+  //   price: [19.9, 23.9, 27.9],
+  //   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
+  // };
 
   return (
     <div className={styles.container}>
@@ -21,8 +24,8 @@ const Product = () => {
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{pizza.name}</h1>
-        <span className={styles.price}>${pizza.price[size]}</span>
+        <h1 className={styles.title}>{pizza.title}</h1>
+        <span className={styles.price}>${pizza.prices[size]}</span>
         <p className={styles.desc}>{pizza.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
@@ -87,14 +90,16 @@ const Product = () => {
   );
 };
 
-// export const getServerSideProps = async ({params}) => {
+//the params means the parameter on each product, remember each product has it's own id
+export const getServerSideProps = async ({params}) => {
   
-//   const res = await axios.get(`http://localhost:3000/api/products/${params}`);
-//   return {
-//     props: {
-//       pizza: res.data,
-//     },
-//   };
-// };
+  //
+  const res = await axios.get(`http://localhost:3000/api/products/${params.id}`);// the "${params}" is the product id"
+  return {
+    props: {
+      pizza: res.data,
+    },
+  };
+};
 
 export default Product;

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Navbar.module.css';
 
 const NavBar = () => {
@@ -6,7 +7,9 @@ const NavBar = () => {
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.callButton}>
-          <Image src='/img/logo5.png' width="150" height="120"/>
+        
+           <Image src='/img/logo5.png' width="150" height="120"/>  
+      
         </div>
         <div className={styles.texts}>
           <div className={styles.text}>ORDER NOW!</div>
