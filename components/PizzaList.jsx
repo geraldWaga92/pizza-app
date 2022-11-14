@@ -13,7 +13,7 @@ const PizzaList = ({pizzaList}) => {
       <div className={styles.wrapper}>
         {/* map the pizzaList to be displayed in our PizzaCard component */}
          {pizzaList.map((pizza) => (
-          // need this key id from our DB then pass our props pizza
+          // again we use the props pizzaList and now it is called pizza then pass into our PizzaCard
            <PizzaCard key={pizza._id} pizza={pizza}/>
          ))} 
          

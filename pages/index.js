@@ -16,7 +16,7 @@ export default function Home({pizzaList}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
-      {/* this pizzaList will be proped into our pizzaList component to be used */}
+      {/* we pass our props into our PizzaList component */}
       <PizzaList pizzaList = {pizzaList} />
     </div>
   )
@@ -31,7 +31,7 @@ export const getServerSideProps = async () => {
   //   admin = true;
   // }
 
-  //we fetch the data we created in our products
+  //we fetch the data we created in our products then use this data to be props in our different component
   const res = await axios.get("http://localhost:3000/api/products");
   return {
     props: {
