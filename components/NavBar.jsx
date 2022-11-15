@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Navbar.module.css';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
+
+  //this is from our cartSlice reducer, we specify the state of the quantity is zero
+  const quantity = useSelector((state) => state.cart.quantity)
   return (
     <div className={styles.container}>
       <div className={styles.item}>
@@ -30,7 +34,8 @@ const NavBar = () => {
       <div className={styles.item}>
         <div className={styles.cart}>
           <Image src="/img/cart2.png" alt="" width="30" height="30" />
-          <div className={styles.counter}>2</div>
+          {/* our initial state of quantity is zero  */}
+          <div className={styles.counter}>{quantity}</div>
         </div>
       </div>
     </div>
