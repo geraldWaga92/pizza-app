@@ -18,7 +18,7 @@ const cartSlice = createSlice({
         },
         //reset the state after we checkout
         reset: (state) => {
-            state.products = []
+            state.products = [];
             state.quantity = 0;
             state.total = 0;
         }

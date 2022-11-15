@@ -8,7 +8,7 @@ const handler = async (req, res) => {
 
   if (method === "GET") {
     try {
-        //this will get the order from DB
+        //this will get the order from our DB
       const orders = await Order.find();
       res.status(200).json(orders);
     } catch (err) {
