@@ -25,19 +25,24 @@ const Featured = () => {
   return (
     <div className={styles.container}>
       <div className={styles.arrowContainer} style={{ left: 10 }} onClick={()=>handleArrow("l")}>
-        <Image src="/img/arrowl.png" alt="" layout="fill" objectfit="contain"/>
+        <Image src="/img/arrowl.png" alt="" width={30} height={30} />
       </div>
       <div className={styles.wrapper} style={{transform:`translateX(${-100*index}vw)`}}>
         {/* we'll receive an errror if we don't put key, so to handle that just add 'i' in our parameters which stands for
         index keys on our image array */}
         {images.map((img, i) => (
           <div className={styles.imgContainer} key={i}>
-            <Image src={img} alt="" layout="fill" objectfit="contain" />
-          </div>
+            <Image src={img} alt=""  
+                  fill
+                  sizes="(max-width: 768px) 100vw,
+                          (max-width: 1200px) 50vw,
+                          33vw"
+                            />
+                          </div>
         ))}
       </div>
       <div className={styles.arrowContainer} style={{ right: 10 }} onClick={()=>handleArrow("r")}>
-        <Image src="/img/arrowr.png" layout="fill" alt="" objectfit="contain"/>
+        <Image src="/img/arrowr.png"  alt=""  width={30} height={30}   />
       </div>
     </div>
   );
