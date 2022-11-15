@@ -158,7 +158,9 @@ const Cart = () => {
           {/* this condition checks if the button is open then show me this checkout button then display this  */}
           {open ? (
             <div className={styles.paymentMethods}>
-              <button className={styles.payButton}> CASH ON DELIVERY </button>
+              <button className={styles.payButton}
+              onClick={() => setCash(true)}
+              > CASH ON DELIVERY </button>
               {/* this is our paypal provider so we can use the paypal payment */}
               <PayPalScriptProvider
                 options={{ 
