@@ -11,8 +11,10 @@ const NavBar = () => {
     <div className={styles.container}>
       <div className={styles.item}>
         <div className={styles.callButton}>
-        
+        {/* go to homepage */}
+        <Link href='/' passHref>
            <Image src='/img/logo5.png' width="150" height="120"/>  
+        </Link>
       
         </div>
         <div className={styles.texts}>
@@ -31,13 +33,16 @@ const NavBar = () => {
           <li className={styles.listItem}>Contact</li>
         </ul>
       </div>
-      <div className={styles.item}>
-        <div className={styles.cart}>
-          <Image src="/img/cart2.png" alt="" width="30" height="30" />
-          {/* our initial state of quantity is zero  */}
-          <div className={styles.counter}>{quantity}</div>
+      {/* we use link to go into cart page */}
+      <Link href='/cart' passHref>
+        <div className={styles.item}>
+          <div className={styles.cart}>
+            <Image src="/img/cart2.png" alt="" width="30" height="30" />
+            {/* our initial state of quantity is zero  */}
+            <div className={styles.counter}>{quantity}</div>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   )
 }

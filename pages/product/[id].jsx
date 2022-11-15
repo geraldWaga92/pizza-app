@@ -2,6 +2,8 @@ import styles from "../../styles/Product.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../redux/cartSlice";
 
 //this component page is for when we click the pizza we'll be directed into another page
 const Product = ({ pizza }) => {
@@ -10,6 +12,7 @@ const Product = ({ pizza }) => {
   const [quantity, setQuantity] = useState(1);
   //this extras will be stored in our DB when we add them to the cart
   const [extras, setExtras] = useState([]);
+  const dispatch = useDispatch();
 
   const handleSize = (sizeIndex) => {
     const difference = pizza.prices[sizeIndex] - pizza.prices[size];
@@ -37,17 +40,13 @@ const Product = ({ pizza }) => {
       //but if it is thesame just remove using filter
       setExtras(extras.filter((extras) => extras._id !== option._id ))
     }
- 
   }
 
-  //-- this dummy data is not needed anymore because we already have data on our
-  // const pizza = {
-  //   id: 1,
-  //   img: "/img/pizza.png",
-  //   name: "CAMPAGNOLA",
-  //   price: [19.9, 23.9, 27.9],
-  //   desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
-  // };
+  //when we click the add to cart all this elements will be added into our cart component and our cart navbar will count 
+  //the number we add to cart
+  const handleClick = () => {
+    dispatch(addProduct({...pizza, extras, price, quantity}));
+  }
 
   return (
     <div className={styles.container}>
@@ -95,7 +94,7 @@ const Product = ({ pizza }) => {
         </div>
         <div className={styles.add}>
             <input onChange={(e) => setQuantity(e.target.value)} type="number" defaultValue={1} className={styles.quantity}/>
-            <button className={styles.button}>Add to Cart</button>
+            <button className={styles.button} onClick={handleClick}>Add to Cart</button>
         </div>
       </div>
     </div>
