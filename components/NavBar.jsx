@@ -13,7 +13,7 @@ const NavBar = () => {
         <div className={styles.callButton}>
         {/* go to homepage */}
         <Link href='/' passHref>
-           <Image src='/img/logo5.png' width="150" height="120"/>  
+           <Image src='/img/logo5.png' width="150" height="120" alt=''/>  
         </Link>
       
         </div>
@@ -24,7 +24,9 @@ const NavBar = () => {
       </div>
       <div className={styles.item}>
         <ul className={styles.list}>
-          <li className={styles.listItem}>Homepage</li>
+          <Link href={'/'}>
+            <li className={styles.listItem}>Homepage</li>
+          </Link>
           <li className={styles.listItem}>Products</li>
           <li className={styles.listItem}>Menu</li>
           

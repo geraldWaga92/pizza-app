@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { method, query: {id} } = req;
 
 
-  dbConnect();//connect first with our DB from util
+  await dbConnect();//connect first with our DB from util
 
   if (method === "GET") {
     try {
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       const product = await Product.findById(id);
       res.status(200).json(product);
     } catch (err) {
-      res.status(500).json(err);
+      res.status(500).json(err.response.data);
     }
   }
 
