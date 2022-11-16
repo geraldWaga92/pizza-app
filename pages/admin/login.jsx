@@ -11,13 +11,15 @@ const Login = () => {
 
   const handleClick = async () => {
     try {
+        //when click the button were gonna pass the username and password
       await axios.post("http://localhost:3000/api/login", {
         username,
         password,
       });
+      //if everything is successfull then were gonna push to the admin panel
       router.push("/admin");
     } catch (err) {
-      setError(true);
+      setError(true);//if we write wrong credentials setError will be true
     }
   };
 

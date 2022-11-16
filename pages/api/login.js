@@ -6,6 +6,7 @@ const handler = (req, res) => {
     const { username, password } = req.body;
     //our validation
     if (
+      //remember that our env username and password must have an "ADMIN" included or else our login funtionality will not work
       username === process.env.ADMIN_USERNAME &&
       password === process.env.ADMIN_PASSWORD
     ) {
