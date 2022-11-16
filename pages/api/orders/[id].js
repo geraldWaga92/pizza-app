@@ -20,6 +20,7 @@ const handler = async (req, res) => {
   if (method === "PUT") {
     try {
       const order = await Order.findByIdAndUpdate(id, req.body, {
+         //we need this new: true for updating our product to work and return the newest update
         new: true,
       });
       res.status(200).json(order);

@@ -7,8 +7,8 @@ const Admin = ({ orders, products}) => {
   //instead of using products, we'll use pizzaList and product as parameters so that when we click delete on the product for our admin dashboard
   //not only it will delete in our DB but also on our browser
   const [pizzaList, setPizzaList] = useState(products);
-//   const [orderList, setOrderList] = useState(orders);
-//   const status = ["preparing", "on the way", "delivered"];
+  const [orderList, setOrderList] = useState(orders);
+  const status = ["preparing", "on the way", "delivered"];
 
   const handleDelete = async (id) => {
     console.log(id);
@@ -24,22 +24,30 @@ const Admin = ({ orders, products}) => {
     }
   };
 
-//   const handleStatus = async (id) => {
-//     const item = orderList.filter((order) => order._id === id)[0];
-//     const currentStatus = item.status;
+  const handleStatus = async (id) => {
 
-//     try {
-//       const res = await axios.put("http://localhost:3000/api/orders/" + id, {
-//         status: currentStatus + 1,
-//       });
-//       setOrderList([
-//         res.data,
-//         ...orderList.filter((order) => order._id !== id),
-//       ]);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+
+    //to find the status first we find the order, here we filter the order id if it matched the id selected then we returned an array "[0]",
+    //and we only want the first array which is 0
+    const item = orderList.filter((order) => order._id === id)[0];
+
+    //if the order status is found then our currentStatus will be the item above
+    const currentStatus = item.status;
+
+    try {
+      const res = await axios.put("http://localhost:3000/api/orders/" + id, {
+        //this means what we want to change
+        status: currentStatus + 1, 
+      });
+      setOrderList([
+        res.data,
+        //this means we just deleted the older or previous status and added a new one which is "res.data" which we get from axios.put method
+        ...orderList.filter((order) => order._id !== id),
+      ]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -95,22 +103,28 @@ const Admin = ({ orders, products}) => {
               <th>Action</th>
             </tr>
           </tbody>
-          <tbody>
-            <tr className={styles.trTitle}>
-              <td>{'89896565987'.slice(0,5)}...</td>
-              <td>John Doe</td>
-              <td>$50</td>
-              <td>Paid</td>
-              <td>Preparing</td>
-              <td>
-              <button 
-                className={styles.button} 
-                style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}
-                >Next Stage
-              </button>
-              </td>
-            </tr>
-          </tbody>
+          {orderList.map((order) => (
+            <tbody key={order._id}>
+              <tr className={styles.trTitle}>
+                <td>{order._id.slice(0,5)}...</td>
+                <td>{order.customer}</td>
+                <td>${order.total}</td>
+                <td>
+                  {order.method === 0 ? <span>cash</span>
+                  : <span>paid</span>}
+                </td>
+                <td>{status[order.status]}</td>
+                <td>
+                  <button
+                    className={styles.button} 
+                    style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}
+                    onClick={() => handleStatus(order._id)}>
+                    Next Stage
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
     </div>
