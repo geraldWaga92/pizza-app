@@ -5,7 +5,7 @@ import Featured from '../components/Featured'
 import PizzaList from '../components/PizzaList'
 import styles from '../styles/Home.module.css'
 
-export default function Home({pizzaList}) {
+export default function Home({pizzaList, admin}) {
   return (
     <div className={styles.container}>
     
@@ -23,20 +23,21 @@ export default function Home({pizzaList}) {
 }
 
 
-export const getServerSideProps = async () => {
-  
-  // let admin = false;
-
-  // if (myCookie.token === process.env.TOKEN) {
-  //   admin = true;
-  // }
+export const getServerSideProps = async (ctx) => {
+ 
+  //here just like we do on our login, before we can open our admin panel we need to know if you are the admin user
+  const myCookie = ctx.req?.cookies || '';
+  let admin = false;
+  if (myCookie.token === process.env.TOKEN) {
+    admin = true;
+  }
 
   //we fetch the data we created in our products then use this data to be props in our different component
   const res = await axios.get("http://localhost:3000/api/products");
   return {
     props: {
       pizzaList: res.data,
-      // admin,
+      admin,
     },
   };
 };
