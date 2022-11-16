@@ -3,22 +3,26 @@ import Image from "next/image";
 import { useState } from "react";
 import styles from "../../styles/Admin.module.css";
 
-const Admin = () => {
-//   const [pizzaList, setPizzaList] = useState(products);
+const Admin = ({ orders, products}) => {
+  //instead of using products, we'll use pizzaList and product as parameters so that when we click delete on the product for our admin dashboard
+  //not only it will delete in our DB but also on our browser
+  const [pizzaList, setPizzaList] = useState(products);
 //   const [orderList, setOrderList] = useState(orders);
 //   const status = ["preparing", "on the way", "delivered"];
 
-//   const handleDelete = async (id) => {
-//     console.log(id);
-//     try {
-//       const res = await axios.delete(
-//         "http://localhost:3000/api/products/" + id
-//       );
-//       setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
+  const handleDelete = async (id) => {
+    console.log(id);
+    try {
+      const res = await axios.delete(
+        "http://localhost:3000/api/products/" + id
+      );
+      //when we delete a pizza we first filter the pizzaList and if the pizza._id did not match with the clicked pizza id do nothing
+      //and if it matched then delete it
+      setPizzaList(pizzaList.filter((pizza) => pizza._id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 //   const handleStatus = async (id) => {
 //     const item = orderList.filter((order) => order._id === id)[0];
@@ -51,26 +55,30 @@ const Admin = () => {
               <th>Action</th>
             </tr>
           </tbody>
-          <tbody>
-            <tr className={styles.trTitle}>
-              <td> 
-                <Image 
-                  src='/img/pizza.png'
-                  width={50}
-                  height={50}
-                  alt=''
-                />
-              
-              </td>
-              <td>PizzaId</td>
-              <td>Pizza Title</td>
-              <td>$50</td>
-              <td>
-                <button className={styles.button} style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}>Edit</button>
-                <button className={styles.button} style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}>Delete</button>
-              </td>
-            </tr>
-          </tbody>
+            {pizzaList.map((product) => (
+              <tbody key={product._id}>
+                <tr className={styles.trTitle}>
+                  <td> 
+                    <Image 
+                      src={product.img}
+                      width={50}
+                      height={50}
+                      alt=''
+                    />
+                  </td>
+                  <td>{product._id.slice(0,5)}...</td>
+                  <td>{product.title}</td>
+                  <td>${product.prices[0]}</td>
+                  <td>
+                    <button className={styles.button} style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}>Edit</button>
+                    <button 
+                      className={styles.button} 
+                      style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}
+                      onClick={() => handleDelete(product._id)}>Delete</button>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
         </table>
       </div>
 
@@ -95,7 +103,11 @@ const Admin = () => {
               <td>Paid</td>
               <td>Preparing</td>
               <td>
-              <button className={styles.button} style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}>Next Stage</button>
+              <button 
+                className={styles.button} 
+                style={{padding: '5px', border: 'none', color: 'white', cursor: 'pointer'}}
+                >Next Stage
+              </button>
               </td>
             </tr>
           </tbody>
@@ -105,27 +117,27 @@ const Admin = () => {
   );
 };
 
-// export const getServerSideProps = async (ctx) => {
-//   const myCookie = ctx.req?.cookies || "";
+export const getServerSideProps = async () => {
+  // const myCookie = ctx.req?.cookies || "";
 
-//   if (myCookie.token !== process.env.TOKEN) {
-//     return {
-//       redirect: {
-//         destination: "/admin/login",
-//         permanent: false,
-//       },
-//     };
-//   }
+  // if (myCookie.token !== process.env.TOKEN) {
+  //   return {
+  //     redirect: {
+  //       destination: "/admin/login",
+  //       permanent: false,
+  //     },
+  //   };
+  // }
 
-//   const productRes = await axios.get("http://localhost:3000/api/products");
-//   const orderRes = await axios.get("http://localhost:3000/api/orders");
+  const productRes = await axios.get("http://localhost:3000/api/products");
+  const orderRes = await axios.get("http://localhost:3000/api/orders");
 
-//   return {
-//     props: {
-//       orders: orderRes.data,
-//       products: productRes.data,
-//     },
-//   };
-// };
+  return {
+    props: {
+      orders: orderRes.data,
+      products: productRes.data,
+    },
+  };
+};
 
 export default Admin;
