@@ -131,17 +131,19 @@ const Admin = ({ orders, products}) => {
   );
 };
 
-export const getServerSideProps = async () => {
-  // const myCookie = ctx.req?.cookies || "";
+export const getServerSideProps = async (ctx) => {
+  //we use context here and if we request to login then we need cookies and if there is no cookie then just empty string
+  const myCookie = ctx.req?.cookies || "";
 
-  // if (myCookie.token !== process.env.TOKEN) {
-  //   return {
-  //     redirect: {
-  //       destination: "/admin/login",
-  //       permanent: false,
-  //     },
-  //   };
-  // }
+  //if the myCookie token is not matched on the user token then block the request and redirect the user to the login page
+  if (myCookie.token !== process.env.TOKEN) {
+    return {
+      redirect: {
+        destination: "/admin/login",
+        permanent: false,//means thesame browser tab 
+      },
+    };
+  }
 
   const productRes = await axios.get("http://localhost:3000/api/products");
   const orderRes = await axios.get("http://localhost:3000/api/orders");
