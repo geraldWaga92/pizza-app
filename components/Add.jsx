@@ -35,12 +35,14 @@ const Add = ({ setClose }) => {
     data.append("file", file);
     data.append("upload_preset", "uploads");
     try {
+      //upload files into our cloudinary
       const uploadRes = await axios.post(
-        "https://api.cloudinary.com/v1_1/dsbyq4sj1/image/upload",
+        "https://api.cloudinary.com/v1_1/dvkhztiv1/image/upload",
         data
       );
 
-      const { url } = uploadRes.data;
+      console.log(uploadRes.data);
+      const { url } = uploadRes.data; 
       const newProduct = {
         title,
         desc,
