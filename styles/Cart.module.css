@@ -7,6 +7,65 @@
   .left {
     flex: 2;
   }
+
+  .tbdoy {
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    /* background-color: red; */
+    
+  }
+
+  .trTitle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 230%;
+    margin-bottom: 2rem;
+    /* background-color: red; */
+  }
+
+ .tr {
+
+   display: flex; 
+   /* flex-wrap: wrap; */
+   justify-content:space-between;
+   align-items: center;
+   width: 100%;
+   margin-right: 0;
+
+ }
+
+ .tr .name {
+  margin-right: -1.5rem;
+  margin-left: 0;
+ }
+
+ /* .tr .extras {
+ padding-left: 2rem;
+ }  */
+
+ .tr  .price {
+ margin-right: 6rem;
+ }
+
+ .tr .quantity {
+ margin-right: 5rem;
+ }
+
+ .tr .total {
+    display: flex;
+    justify-content: flex-end;
+    
+ }
+
+
+  
   
   .right {
     flex: 1;
@@ -79,6 +138,8 @@
       flex-direction: column;
       padding: 20px;
     }
+
+    
   
     .table {
       display: flex;
@@ -97,6 +158,13 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 20px;
+    }
+
+    .tr td > .price, .quantity, .total, .name {
+      display: flex;
+      justify-content: center; 
+      text-align: center;
+      width: 100%;
     }
   
     .imgContainer{

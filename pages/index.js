@@ -17,9 +17,10 @@ export default function Home({pizzaList, admin}) {
     
       {/* this Head component is important because of SEO reason */}
       <Head>
+        <link rel="shortcut icon" href="/favicon/favicon16x16.png" />
+        <link rel="shortcut icon" href="/favicon/favicon16x16.png" />
         <title>Pizza Shop App</title>
         <meta name="description" content="Best Pizza, Delicous Pizza, Affordable pizza" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <Featured />
       {<AddButton setClose={setClose} />}

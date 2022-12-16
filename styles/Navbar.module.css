@@ -96,7 +96,14 @@ font-weight: 600;
 
   .container {
     padding: 0;
+    margin: 0;
   }
+
+  .texts, .item {
+    margin: 0;
+  }
+
+
 
   .text:first-child {
     font-size: 1rem;
@@ -104,7 +111,7 @@ font-weight: 600;
   }
 
   .text:last-child {
-    font-size: 1.6rem;
+    font-size: 1.2rem;
   }
 
   .item:nth-child(1) {
@@ -117,8 +124,12 @@ font-weight: 600;
   }
 
   .item:nth-child(3) {
-    margin-right: 15px;
+    /* margin-right: 15px; */
     flex: 1;
+  }
+
+  .cart {
+    margin-right: 20px;
   }
  
 }
