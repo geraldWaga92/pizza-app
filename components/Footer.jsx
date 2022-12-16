@@ -5,7 +5,12 @@ const Footer = () => {
   return (
     <div className={styles.container}>
       <div className={styles.item}>
-        <img src="https://www.recipetineats.com/wp-content/uploads/2020/05/Pizza-Crust-without-yeast_5.jpg?w=900" objectfit="cover" layout="fill" alt="" />
+        <Image
+          src="https://www.recipetineats.com/wp-content/uploads/2020/05/Pizza-Crust-without-yeast_5.jpg?w=900"
+          objectfit="cover"
+          layout="fill"
+          alt=""
+        />
       </div>
       <div className={styles.item}>
         <div className={styles.card}>
