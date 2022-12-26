@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 
 const MONGO_CONNECT_KEY = process.env.MONGO_CONNECT_KEY
 
+
 if (!MONGO_CONNECT_KEY) {
   throw new Error(
     'Please define the MONGO_CONNECT_KEY environment variable inside .env.local'
